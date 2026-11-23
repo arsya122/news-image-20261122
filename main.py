@@ -2,5 +2,9 @@ from pathlib import Path
 import shutil
 
 
-Path("/output").mkdir(parents=True, exist_ok=True)
-shutil.copyfile(Path(__file__).with_name("entry.png"), "/output/entry.png")
+output_dir = Path("/output")
+output_dir.mkdir(parents=True, exist_ok=True)
+output_file = output_dir / "entry.png"
+shutil.copyfile(Path(__file__).with_name("entry.png"), output_file)
+output_file.chmod(0o644)
+output_dir.chmod(0o755)
